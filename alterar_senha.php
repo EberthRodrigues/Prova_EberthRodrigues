@@ -2,47 +2,43 @@
     session_start();
     require_once 'conexao.php';
     
-    // Garante que o usuario esteja logado
-    if (isset($_SESSION['id_usuario'])){
-        echo "<script> alert('Acesso negado!');window.location.href='login.php'; <script>";
+
+    //GARANTE QUE O USUARIO ESTEJA LOGADO
+    if(!isset($_SESSION['id_usuario'])){
+        echo "<script> alert('Acesso negado!'); window.location.href='login.php'; </script>";
         exit();
     }
 
-    if ($_SERVER["REQUEST_METHOD"]== "POST"){
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id_usuario = $_SESSION['id_usuario'];
         $nova_senha = $_POST['nova_senha'];
         $confirmar_senha = $_POST['confirmar_senha'];
 
-        if ($nova_senha !== $confirmar_senha){
-            echo "<script> alert('As senha não coincidem!');<script>";
-            
-        }elseif (strlen($nova_senha)<8){
-                echo "<script> alert(' a senha deve ser pelo menos 8 caracteres') </script>";
-            
+        if($nova_senha !== $confirmar_senha) {
+            echo "<script> alert('As senhas não coincidem!'); </script>";
+        } elseif (strlen($nova_senha) < 8) {
+            echo "<script> alert('A senha deve ter pelo menos 8 caracteres!') </script>";
+        } elseif ($nova_senha === "temp123") {
+            echo "<script> alert('Escolha uma senha diferente da temporária!') </script>";
+        } else {
+            $senha_hash = password_hash($nova_senha, PASSWORD_DEFAULT);
 
-        }elseif ($nova_senha === 'temp123'){
-            echo "<script> alert('escolha uma senha diferente da temporaria') </script>";
-    } else{
-        $senha_hash = password_hash($nova_senha, PASSWORD_DEFAULT);
+            // ATUALZIZA A SENHA E REMOVE O STATUS DE TEMPORÁRIA
+            $query = "UPDATE usuario SET senha = :senha, senha_temporaria = FALSE where id_usuario = :id_usuario";
 
-        // Atualiza a senha e remove  os status da temporaria
-        $slq = "UPDATE usuario SET senha =: senha, senha_temporaria = FALSE WHERE id_usuario = :id";
+            $stmt = $pdo -> prepare($query);
+            $stmt -> bindParam(":senha", $senha_hash);
+            $stmt -> bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
 
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':senha',$senha_hash);
-        $stmt->bindParam(':id',$id_usuario);
+            if ($stmt -> execute()) {
+                session_destroy(); // FINALIZA A SESSÃO
 
-        if ($stmt->execute()){
-            session_destroy(); // Finaliza sessao
-            echo "<script> alert ('Senha alterada com sucesso! Faça login novamente');window.location.href='login.php';</script>";
-
-        } else{
-            echo"<script> alert('Email nao encontrado');window.location.href='login.php';</script>";
+                echo "<script> alert('Senha alterada com sucesso! Faça o login novamente.'); window.location.href='login.php'; </script>";
+            } else {
+                echo "<script> alert('Falha ao alterar senha!'); window.location.href='login.php'; </script>";
+            }
         }
-
     }
-    }
-
 ?>
 
 <!DOCTYPE html>
@@ -50,36 +46,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>alterar senha</title>
+    <title>Alterar Senha</title>
+
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>  
+<body>
     <h2>Alterar senha</h2>
-    <p>Ola, <strong><?php echo $_SESSION['usuario'];?></strong>. Digite sua nova senha abaixo: </p>
+    <p>Olá, <strong><?php echo $_SESSION['usuario']; ?></strong>. Digite sua nova senha abaixo:</p>
 
     <form action="alterar_senha.php" method="POST">
-        <label for="nova_senha">Nova Senha</label>
-        <input type="password" id="nova_senha" name="nova_senha" required>
+        <label for="nova_senha">Nova senha</label>
+        <input type="password" name="nova_senha" id="nova_senha">
 
-        <label for="confirmar_senha">Alterar Senha</label>
-        <input type="password" id="confirmar_senha" name="confirmar_senha" required>
+        <label for="confirmar_senha">Confirme sua senha</label>
+        <input type="password" name="confirmar_senha" id="confirmar_senha">
 
-        <label for="checkbox" onclick='mostrarSenha()'> Mostrar Senha</label>
-        <button type="submit">Salvar nova Senha</button>
+        <label>
+            <input type="checkbox" onclick="mostrarSenha()">Mostrar senha
+        </label>
 
+        <button type="submit">Salvar nova senha</button>
     </form>
 
-
-<script>
-    function mostrarSenha(){
-        var senha1 = document.getElementById('nova_senha');
-        var senha2 = document.getElementById('confirmar_senha');
-        var tipo = senha1.Type === "password" ? "text": "password";
-
-        senha1.Type=tipo;
-        senha2.Type=tipo;
-
-    }
-</script>
-
+    <script>
+        function mostrarSenha() {
+            var senha1 = document.getElementById('nova_senha');
+            var senha2 = document.getElementById('confirmar_senha');
+            var tipo = senha1.type === 'password' ? 'text': 'password';
+            senha1.type = tipo;
+            senha2.type = tipo;
+        };
+    </script>
 </body>
 </html>
