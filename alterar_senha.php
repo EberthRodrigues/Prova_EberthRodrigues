@@ -1,6 +1,7 @@
-<?php
-    session_start();
+<?php 
+
     require_once 'conexao.php';
+    
     
 
     //GARANTE QUE O USUARIO ESTEJA LOGADO
