@@ -64,18 +64,20 @@ $opcoes_menu = $permissoes[$id_perfil];
         <div class="saudacao">
             <h2>Bem vindo, <?php echo $_SESSION["usuario"];?>!  Perfil: <?php echo $nome_perfil;?></h2>
         </div>
+
         <div class="logout">
             <form action="logout.php" method="POST">
                 <button type="submit">logout</button>
             </form>
-</div>
+        </div>
+
     </header>
 
     <nav>
         <ul class="menu">
             <?php foreach($opcoes_menu as $categoria=>$arquivos):?>
              <li class="dropdown">
-                <a href="#"> <?$categoria?></a>
+                <a href="#"><?=$categoria?></a>
                 <ul class="dropdown-menu"> 
                     <?php foreach($arquivos as $arquivo):?>
                     

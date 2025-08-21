@@ -1,10 +1,9 @@
-<?php 
+<?php
+    session_start();
 
     require_once 'conexao.php';
-    
-    
 
-    //GARANTE QUE O USUARIO ESTEJA LOGADO
+    // Garante que o usuario esteja logado
     if(!isset($_SESSION['id_usuario'])){
         echo "<script> alert('Acesso negado!'); window.location.href='login.php'; </script>";
         exit();
@@ -24,7 +23,7 @@
         } else {
             $senha_hash = password_hash($nova_senha, PASSWORD_DEFAULT);
 
-            // ATUALZIZA A SENHA E REMOVE O STATUS DE TEMPORÁRIA
+            // Atualiza se senah e remove o STATUS de temporaria
             $query = "UPDATE usuario SET senha = :senha, senha_temporaria = FALSE where id_usuario = :id_usuario";
 
             $stmt = $pdo -> prepare($query);
@@ -32,7 +31,7 @@
             $stmt -> bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
 
             if ($stmt -> execute()) {
-                session_destroy(); // FINALIZA A SESSÃO
+                session_destroy(); // Finaliza sessão
 
                 echo "<script> alert('Senha alterada com sucesso! Faça o login novamente.'); window.location.href='login.php'; </script>";
             } else {

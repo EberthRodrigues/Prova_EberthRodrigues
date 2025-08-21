@@ -2,7 +2,7 @@
     session_start();
     require_once 'conexao.php';
 
-    if($_SESSION['perfil'] != 0 && $_SESSION['perfil'] != 0) {
+    if($_SESSION['perfil'] != 1 && $_SESSION['perfil'] != 2) {
         echo "<script> alert('Acesso negado!'); window.location.href='principal.php'; </script>";
         exit();
     }

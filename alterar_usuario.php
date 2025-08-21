@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <h2>Alterar usuarios</h2>
 
     <!--Formulario para buscar usuarios-->
-    <form action="alterar_usuario.php" method="post">
+    <form action="alterar_usuario.php" method="POST">
         <label for="busca_usuario">Digite o id ou nome do usuario:</label>
         <input type="text" id="busca_usuario" name="busca_usuario" required onkeyup="buscarSugestoes()">
 
@@ -71,21 +71,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>">:
 
             <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" value="<? htmlspecialchars($usuario['nome']) ?>" required>
+            <input type="text" id="nome" name="nome" value="<?= htmlspecialchars($usuario['nome']) ?>" required>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="<? htmlspecialchars($usuario['email']) ?>" required>
+            <input type="email" id="email" name="email" value="<?= htmlspecialchars($usuario['email']) ?>" required>
 
             <label for="id_perfil">Perfil:</label>
-            <input type="text" id="id_perfil" name="id_perfil" value="<? htmlspecialchars($usuario['id_perfil']) ?>"
+            <input type="text" id="id_perfil" name="id_perfil" value="<?= htmlspecialchars($usuario['id_perfil']) ?>"
                 required>
 
             <label for="id_perfil">Perfil:</label>
             <select name="id_Perfil" id="id_Perfil">
-                <option value="1" <? $usuario['id_perfil'] == 1 ? 'selected' : '' ?>>Administrador</option>
-                <option value="2" <? $usuario['id_perfil'] == 2 ? 'selected' : '' ?>>Secretária</option>
-                <option value="3" <? $usuario['id_perfil'] == 3 ? 'selected' : '' ?>>Almoxarife</option>
-                <option value="4" <? $usuario['id_perfil'] == 4 ? 'selected' : '' ?>>Cliente</option>
+                <option value="1" <?= $usuario['id_perfil'] == 1 ? 'selected' : '' ?>>Administrador</option>
+                <option value="2" <?= $usuario['id_perfil'] == 2 ? 'selected' : '' ?>>Secretária</option>
+                <option value="3" <?= $usuario['id_perfil'] == 3 ? 'selected' : '' ?>>Almoxarife</option>
+                <option value="4" <?= $usuario['id_perfil'] == 4 ? 'selected' : '' ?>>Cliente</option>
 
             </select>
             <!-- Se o usuário logado for ADM, exibir opção de alterar senha -->
