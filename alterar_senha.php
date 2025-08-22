@@ -1,7 +1,5 @@
 <?php
-    session_start();
-
-    require_once 'conexao.php';
+    require_once 'includes/cabecalho.php';
 
     // Garante que o usuario esteja logado
     if(!isset($_SESSION['id_usuario'])){
@@ -48,7 +46,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar Senha</title>
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?=V2">
 </head>
 <body>
     <h2>Alterar senha</h2>

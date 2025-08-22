@@ -1,3 +1,8 @@
+
+function executaMascara() {
+    objeto.value = funcao(objeto.value)
+
+}
 function validarFuncionario() {
     let nome = document.getElementById("nome_funcionario").value;
     let telefone = document.getElementById("telefone").value;
@@ -21,5 +26,36 @@ function validarFuncionario() {
     }
 
     return true;
+
+
+
+
+// Executar mascaras
+function mascara(o, f) //Define o objeto e chama a função
+{
+    objeto = o
+    funcao = f
+    setTimeout("executaMascara()", 1)
+
 }
+
+function executaMascara() {
+    objeto.value = funcao(objeto.value)
+
+}
+
+// NOME
+function nome(variavel) {
+    variavel = variavel.replace(/[^a-zA-ZÀ-ÿ\s]/g, ""); // Remove números e caracteres especiais
+    return variavel;
+}
+
+
+
+}
+
+
+
+
+
 

@@ -1,7 +1,5 @@
 <?php
-session_start();
-
-require_once 'conexao.php';
+        require_once 'includes/cabecalho.php';
 
 // VERIFICA SE O USUARIO TEM PERMISSAO DE adm
 if ($_SESSION['perfil'] != 1) {
@@ -101,6 +99,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <?php endif; ?>
     <a href="principl.php">Voltar</a>
+
+  
 
 </body>
 

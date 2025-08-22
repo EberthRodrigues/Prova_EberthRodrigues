@@ -41,12 +41,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
+
     <h2>Cadastrar usuario</h2>    
     <form action="cadastro_usuario.php" method="POST">
+
         <label for="nome">Nome: </label>
-            <input type="text" name="nome" id="nome" required>
+            <input type="text" name="nome"  id="nome" pattern="[A-Za-z0-9]+" title="Não é permitido usar simbolos." required>
     
         <label for="email">Email: </label>
             <input type="email" name="email" id="email" required>
@@ -64,9 +67,10 @@
             
             <button type="submit">Salvar</button>
             <button type="reset">Cancelar</button>
-            
     
     </form>
 <a href="principal.php">Voltar</a>
+<script src="validacoes.js"></script>
+
 </body>
 </html>

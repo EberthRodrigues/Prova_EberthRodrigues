@@ -1,6 +1,5 @@
 <?php
-    session_start();
-    require_once 'conexao.php';
+    require_once 'includes/cabecalho.php';
 
     if($_SESSION['perfil'] != 1 && $_SESSION['perfil'] != 2) {
         echo "<script> alert('Acesso negado!'); window.location.href='principal.php'; </script>";
@@ -42,8 +41,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscar Usuário</title>
+    <link rel="stylesheet" href="styles.css">
 
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h2>Lista de Usuários</h2>
@@ -56,7 +55,8 @@
         <button type="submit">Pesquisar</button>
     </form>
 
-    <?php if(!empty($usuarios)): ?>
+    <?php if(!empty($usuarios)):?>
+
         <table border>
             <tr>
                 <th>ID</th>
@@ -65,6 +65,7 @@
                 <th>Perfil</th>
                 <th>Ações</th>
             </tr>
+
             
             <?php foreach($usuarios as $usuario): ?>
                 <tr>
