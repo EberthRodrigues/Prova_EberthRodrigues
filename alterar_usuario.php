@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
     <title>Alterar usuario</title>
     <!-- Certifique-se de que o JavaScript está sendo carregando  corretamente -->
 </head>
@@ -64,9 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
 
     <?php if ($usuario): ?>
-        <form action="processar_alteracao_usuario.php" method="POST">:
+        <form action="processar_alteracao_usuario.php" method="POST">
 
-            <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>">:
+            <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>">
 
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" value="<?= htmlspecialchars($usuario['nome']) ?>" required>
@@ -92,14 +92,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label for="nova_senha">Nova senha</label>
                 <input type="password" id="nova_senha" name="nova_senha">
             <?php endif; ?>
-            <button type="submit">Alterar</button>
+            <button type="submit">Alterar</button> <br>
             <button type="reset">Cancelar</button>
+
+
 
         </form>
 
     <?php endif; ?>
-    <a href="principl.php">Voltar</a>
-
+    <a href="principal.php">Voltar</a>
   
 
 </body>

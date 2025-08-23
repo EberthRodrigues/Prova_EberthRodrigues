@@ -46,11 +46,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar Senha</title>
 
-    <link rel="stylesheet" href="styles.css?=V2">
+    <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
     <h2>Alterar senha</h2>
     <p>Olá, <strong><?php echo $_SESSION['usuario']; ?></strong>. Digite sua nova senha abaixo:</p>
+<nav class="alterar_senha">
 
     <form action="alterar_senha.php" method="POST">
         <label for="nova_senha">Nova senha</label>
@@ -65,7 +66,7 @@
 
         <button type="submit">Salvar nova senha</button>
     </form>
-
+</nav>
     <script>
         function mostrarSenha() {
             var senha1 = document.getElementById('nova_senha');

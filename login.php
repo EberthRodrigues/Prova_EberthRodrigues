@@ -1,6 +1,5 @@
 <?php
     session_start();
-
     require_once 'conexao.php';
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -45,21 +44,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
-    <h2>Login</h2>
-    
+
     <form action="login.php" method="POST">
-        <label for="email">E-mail:</label>
-        <input type="email" name="email" id="email" required>
+        <h2>Login</h2>
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email" required>
 
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" id="senha" required>
+            <label for="senha">Senha:</label>
+            <input type="password" name="senha" id="senha" required>
 
-        <button type="submit">Entrar</button>
+            <button type="submit">Entrar</button>
+
+        <p><a href="recuperar_senha.php">Esqueci minha senha</a></p>
     </form>
 
-    <p><a href="recuperar_senha.php">Esqueci minha senha</a></p>
+
 </body>
 </html>

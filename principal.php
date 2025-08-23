@@ -56,11 +56,24 @@ $opcoes_menu = $permissoes[$id_perfil];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Principal</title>
-    <link rel="stylesheet" href="styles.css?=v2">
+    <link rel="stylesheet" href="styles.css?v=2">
     <script src="scripts.js"></script>
 </head>
 <body>
 <nav>
+
+    
+<header>  
+            <h2>Bem vindo, <?php echo $_SESSION["usuario"];?>!  Perfil: <?php echo $nome_perfil;?></h2>
+      
+        <div class="logout" style="text-align: center;">
+            <form action="logout.php" method="POST">
+                <button type="submit" >logout</button>
+            </form>
+        </div>
+
+    </header>
+
         <ul class="menu">
             <?php foreach($opcoes_menu as $categoria=>$arquivos):?>
              <li class="dropdown">
@@ -78,18 +91,6 @@ $opcoes_menu = $permissoes[$id_perfil];
         </ul>
     </nav>
 
-    <header>
-        <div class="saudacao">
-            <h2>Bem vindo, <?php echo $_SESSION["usuario"];?>!  Perfil: <?php echo $nome_perfil;?></h2>
-        </div>
-
-        <div class="logout" style="text-align: center;">
-            <form action="logout.php" method="POST">
-                <button type="submit" >logout</button>
-            </form>
-        </div>
-
-    </header>
 
 </body>
 </html>
