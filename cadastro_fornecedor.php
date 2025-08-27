@@ -14,9 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $telefone = $_POST['telefone'];
     $email = $_POST['email'];
     $contato = $_POST['contato'];
-    $id_funcionario_registro = $_SESSION['id_usuario']; // supondo que o fornecedor logado seja o registrador
 
-    $sql = "INSERT INTO fornecedor (nome_fornecedor, endereco, telefone, email, contato, id_funcionario_registro) VALUES (:nome_fornecedor, :endereco, :telefone, :email, :contato, :id_funcionario_registro)";
+
+    $sql = "INSERT INTO fornecedor (nome_fornecedor, endereco, telefone, email, contato) VALUES (:nome_fornecedor, :endereco, :telefone, :email, :contato)";
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(":nome_fornecedor", $nome_fornecedor);
@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bindParam(":telefone", $telefone);
     $stmt->bindParam(":email", $email);
     $stmt->bindParam(":contato", $contato);
-    $stmt->bindParam(":id_funcionario_registro", $id_funcionario_registro);
 
     if ($stmt->execute()) {
         echo "<script>alert('Fornecedor cadastrado com sucesso!');</script>";

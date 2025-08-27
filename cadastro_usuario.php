@@ -19,7 +19,6 @@
         $sql = "INSERT INTO usuario (nome, email, senha, id_perfil) VALUES (:nome,:email, :senha, :id_perfil)";
 
         $stmtPerfil = $pdo -> prepare($sql);
-        
         $stmtPerfil->bindParam(":nome", $nome);
         $stmtPerfil->bindParam(":email", $email);
         $stmtPerfil->bindParam(":senha", $senha);
