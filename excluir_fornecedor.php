@@ -2,7 +2,7 @@
     require_once 'includes/cabecalho.php';
     require_once 'conexao.php';
 
-    // VERIFICA SE O USUARIO TEM PERMISSAO DE adm
+    // VERIFICA SE O fornecedor TEM PERMISSAO DE adm
     if($_SESSION['perfil'] != 1) {
         echo "<script> alert('Acesso Negado!'); window.location.href='principal.php'; </script>";
         exit();
@@ -18,18 +18,18 @@
     $stmt -> execute();
     $fornecedores = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
-    // SE UM id FOR PASSADO VIA GET, EXCLUI O usuario
+    // SE UM id FOR PASSADO VIA GET, EXCLUI O fornecedor
     if(isset($_GET['id']) && is_numeric($_GET['id'])) {
         $id_fornecedor = $_GET['id'];
 
-        // EXCLUI O USUARIO DO BANCO DE DADOS
+        // EXCLUI O fornecedor DO BANCO DE DADOS
         $query = "DELETE FROM fornecedor WHERE id_fornecedor = :id";
 
         $stmt = $pdo -> prepare($query);
         $stmt -> bindParam(":id", $id_fornecedor, PDO::PARAM_INT);
         
         if($stmt -> execute()) {
-            echo "<script> alert('fornecedor excluido com sucesso!'); window.location.href='buscar_usuario.php'; </script>";
+            echo "<script> alert('fornecedor excluido com sucesso!'); window.location.href='excluir_fornecedor.php'; </script>";
         } else {
             echo "<script> alert('Erro ao excluir fornecedor!'); </script>";
         }

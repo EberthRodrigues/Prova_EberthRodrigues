@@ -2,7 +2,7 @@
 require_once 'includes/cabecalho.php';
 require_once 'conexao.php';
 
-// verifica se o usuário tem permissão (Administrador)
+// verifica se o fornecedor tem permissão (Administrador)
 if ($_SESSION['perfil'] != 1) {
     echo "Acesso negado";  
     exit();
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $telefone = $_POST['telefone'];
     $email = $_POST['email'];
     $contato = $_POST['contato'];
-    $id_funcionario_registro = $_SESSION['id_usuario']; // supondo que o usuário logado seja o registrador
+    $id_funcionario_registro = $_SESSION['id_usuario']; // supondo que o fornecedor logado seja o registrador
 
     $sql = "INSERT INTO fornecedor (nome_fornecedor, endereco, telefone, email, contato, id_funcionario_registro) VALUES (:nome_fornecedor, :endereco, :telefone, :email, :contato, :id_funcionario_registro)";
 
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </form>
 
 <script>
-// Impede números e símbolos nos campos de nome e contato
+
 const nomeInput = document.getElementById('nome_fornecedor');
 nomeInput.addEventListener('input', function() {
     this.value = this.value.replace(/[^A-Za-zÀ-ÿ ]/g, '');
