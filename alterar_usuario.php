@@ -75,8 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="email" id="email" name="email" value="<?= htmlspecialchars($usuario['email']) ?>" required>
 
             <label for="id_perfil">Perfil:</label>
-            <input type="text" id="id_perfil" name="id_perfil" value="<?= htmlspecialchars($usuario['id_perfil']) ?>"
-                required>
+            <input type="text" id="id_perfil" name="id_perfil" value="<?= htmlspecialchars($usuario['id_perfil']) ?>"required>
 
             <label for="id_perfil">Perfil:</label>
             <select name="id_Perfil" id="id_Perfil">

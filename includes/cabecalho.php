@@ -69,11 +69,6 @@ $opcoes_menu = $permissoes[$id_perfil];
                 <h2>Bem vindo, <?php echo $_SESSION["usuario"]; ?>! Perfil: <?php echo $nome_perfil; ?></h2>
             </div>
 
-            <div class="logout">
-                <form action="logout.php" method="POST">
-                    <button type="submit">logout</button>
-                </form>
-            </div>
 
         </header>
 
